@@ -6,19 +6,24 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: npm i 
+      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p  
       - run: npm run lint
-      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p      
   test:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: npm i 
+      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p  
       - run: npm run test
   analyze:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: npm i 
+      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p  
       - run: npm audit
 
 workflows:
